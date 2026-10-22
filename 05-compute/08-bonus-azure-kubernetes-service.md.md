@@ -46,7 +46,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: alexcmptlab04cr.azurecr.io/catalogue:v1
+          image: catrinecmptlab04cr.azurecr.io/catalogue:v1
           ports: [{ containerPort: 80 }]
 ---
 apiVersion: v1
@@ -75,7 +75,7 @@ The **selector/label** match (`app: catalogue`) is what links the deployment's p
 
 ## 3. The node resource group `MC_…`
 
-AKS creates a second resource group, e.g. `MC_alex-cmpt-lab-16-rg_<cluster>_norwayeast`, holding:
+AKS creates a second resource group, e.g. `MC_catrine-cmpt-lab-16-rg_<cluster>_norwayeast`, holding:
 VM scale set · OS disks · load balancer · public IPs · default VNet · managed identities.
 
 - Created **and deleted** with the cluster.
@@ -216,14 +216,14 @@ Order: **check → control plane → surge node → cordon and drain old node �
 ### Azure CLI
 
 ```bash
-RG=alex-cmpt-lab-16-rg
-AKS=alex-cmpt-lab-16-aks
+RG=catrine-cmpt-lab-16-rg
+AKS=catrine-cmpt-lab-16-aks
 
 # Create
 az aks create -g $RG -n $AKS -l norwayeast --tier free \
   --node-count 1 --node-vm-size Standard_FX2ms_v2 \
   --network-plugin azure --network-plugin-mode overlay \
-  --attach-acr alexcmptlab04cr --generate-ssh-keys
+  --attach-acr catrinecmptlab04cr --generate-ssh-keys
 
 # Connect kubectl
 az aks get-credentials -g $RG -n $AKS
@@ -233,8 +233,8 @@ kubectl get nodes
 az aks update -g $RG -n $AKS --enable-aad --enable-azure-rbac --disable-local-accounts
 
 # Registry
-az aks update -g $RG -n $AKS --attach-acr alexcmptlab04cr
-az aks check-acr -g $RG -n $AKS --acr alexcmptlab04cr.azurecr.io
+az aks update -g $RG -n $AKS --attach-acr catrinecmptlab04cr
+az aks check-acr -g $RG -n $AKS --acr catrinemptlab04cr.azurecr.io
 
 # Scaling
 kubectl autoscale deployment catalogue --cpu-percent=60 --min=2 --max=10        # HPA
@@ -254,8 +254,8 @@ az aks enable-addons -g $RG -n $AKS -a azure-policy
 ### PowerShell (Az.Aks)
 
 ```powershell
-$RG  = "alex-cmpt-lab-16-rg"
-$AKS = "alex-cmpt-lab-16-aks"
+$RG  = "catrine-cmpt-lab-16-rg"
+$AKS = "catrine-cmpt-lab-16-aks"
 
 New-AzAksCluster -ResourceGroupName $RG -Name $AKS -NodeCount 1 -GenerateSshKey
 Import-AzAksCredential -ResourceGroupName $RG -Name $AKS     # = az aks get-credentials
@@ -297,7 +297,7 @@ CLI is the main tool for AKS in the deck and in practice. Know the PowerShell na
 
 ## Lab L16: AKS first contact (optional, 60 min)
 
-**Bring:** the L04 registry `alexcmptlab04cr`. One node, at least 2 vCPU / 4 GB, running about an hour.
+**Bring:** the L04 registry `catrinecmptlab04cr`. One node, at least 2 vCPU / 4 GB, running about an hour.
 
 1. Create Free-tier cluster, 1 node, overlay networking, registry attached.
 2. `az aks get-credentials` → `kubectl get nodes`.
@@ -314,7 +314,7 @@ CLI is the main tool for AKS in the deck and in practice. Know the PowerShell na
 | Break | What you'll see | Fix |
 |---|---|---|
 | Change the image tag to `catalogue:v99` and apply | `ErrImagePull`, event says "not found" | Fix the tag, re-apply |
-| `az aks update --detach-acr alexcmptlab04cr`, then delete a pod | New pod: `ImagePullBackOff`, "unauthorized" | `az aks update --attach-acr ...` |
+| `az aks update --detach-acr catrinecmptlab04cr`, then delete a pod | New pod: `ImagePullBackOff`, "unauthorized" | `az aks update --attach-acr ...` |
 | Scale to `--replicas=30` on one small node | Many pods `Pending`, "Insufficient cpu" | Scale back, or enable cluster autoscaler |
 | Change the service selector to `app: wrong` | External IP loads nothing | `kubectl describe service` shows no endpoints → fix selector |
 
@@ -322,7 +322,7 @@ CLI is the main tool for AKS in the deck and in practice. Know the PowerShell na
 
 ```bash
 az aks delete -g $RG -n $AKS --yes --no-wait
-az group list --query "[?starts_with(name,'MC_alex-cmpt-lab-16')].name" -o tsv   # should go empty
+az group list --query "[?starts_with(name,'MC_catrine-cmpt-lab-16')].name" -o tsv   # should go empty
 kubectl config delete-context $AKS   # tidy the local kubeconfig
 ```
 
