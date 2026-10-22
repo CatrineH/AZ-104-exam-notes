@@ -90,6 +90,7 @@ Labs also have a **Break it and fix it** section. How I study with this format: 
 - [Availability](05-compute/05-availability.md) – sets, zones, load balancer
 - [VM Scale Sets](05-compute/06-vm-scale-sets.md)
 - [ARM Templates and Bicep](05-compute/07-arm-templates-and-bicep.md)
+- [Bonus- Azure Kubernetes Services](05-compute/08-bonus-azure-kubernetes-service.md.md)
 
 ### Still to write
 - **Monitoring and maintenance:** Azure Monitor, Log Analytics and KQL, alerts and action groups, Network Watcher, Azure Backup, Site Recovery
