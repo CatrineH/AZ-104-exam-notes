@@ -70,10 +70,6 @@ Work in this order – it's also the order the exam expects:
 | `MissingSubscriptionRegistration` | Resource provider not registered | `az provider register` |
 | `InvalidTemplate` | Template syntax | `az deployment group validate` |
 
-## Practice with Claude
-- *"Give me 5 scenario questions on <topic> like the AZ-104 exam, one at a time, with hints and explanations."*
-- *"Here's my lab setup. Give me a broken version to troubleshoot without telling me what's wrong."*
-- *"Show me five CLI/PowerShell snippets for <topic> with one thing wrong in each."*
 
 ## Related
 - [Deployment checklist](az-project-skeleton.md)
