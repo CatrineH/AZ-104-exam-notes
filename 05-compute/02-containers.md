@@ -54,6 +54,7 @@ Think of a VM as a whole house, and a container as a flat in a shared building. 
 - **Tag:** a label on an image, such as `v1` or `latest`. `latest` is just a tag, not a guarantee of the newest version.
 - **Repository:** all the tags of one image name
 - **Container:** a running copy of an image
+- **Azure Compute Gallery:** store, version, and replicate **VM images** and application package across regions and share them within or across tenants (NOT the same as Container Registry)
 
 The flow is **Dockerfile -> image -> registry -> container.**
 
