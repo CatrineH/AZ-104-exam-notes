@@ -16,7 +16,7 @@ Labs also have a **Break it and fix it** section. How I study with this format: 
 | Implement and manage storage | 15–20% | [03-storage](03-storage/) |
 | Deploy and manage Azure compute resources | 20–25% | [05-compute](05-compute/) |
 | Implement and manage virtual networking | 15–20% | [01-networking](01-networking/) |
-| Monitor and maintain Azure resources | 10–15% | *Week 4 – notes coming* |
+| Monitor and maintain Azure resources | 10–15% | [06-monitor](06-monitoring-backup/) |
 
 ## Contents
 
